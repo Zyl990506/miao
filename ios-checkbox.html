@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label {
+            border: 2px solid;
+            border-color: rgb(197, 197, 197);
+            border-radius: 40px;
+            background-color: rgb(255, 255, 255);
+            width: 70px;
+            height: 39px;
+            display: inline-block;
+            position: absolute;
+            transition: 1s;
+        }
+        
+        p.w {
+            display: inline-block;
+            border-color: rgb(197, 197, 197);
+            border-radius: 40px;
+            background-color: rgb(255, 255, 255);
+            width: 35px;
+            height: 36px;
+            box-shadow: 0 0 2px 2px rgb(226, 225, 225);
+            position: absolute;
+            transition: 1s;
+            top: -15px;
+            left: 1px;
+        }
+        
+        input:checked+label {
+            background-color: red;
+        }
+        
+        input:checked+label>.w {
+            left: 34px;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" id="zyl" hidden>
+    <label for="zyl"><p class="w"></p></label>
+
+
+
+
+
+
+</body>
+
+</html>
