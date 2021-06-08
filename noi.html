@@ -21,7 +21,7 @@
         var a = Number(prompt('请输入a'))
         var b = Number(prompt('请输入b'))
         var c = Number(prompt('请输入c'))
-        console.log((a + b) / c)
+        console.log(Math.round((a + b) / c))
     </script>
     <script id="ch0103/04">
         var a = Number(prompt('输入被除数a'))
@@ -38,7 +38,7 @@
     <script id="ch0103/06">
         var a = Number(prompt('输入确诊数a'))
         var b = Number(prompt('死亡数b'))
-        console.log(toPercent(a / b).toFixed(3))
+        console.log((b / a * 100).toFixed(3) + '%')
     </script>
     <script id="ch0103/07">
         var x = Number(prompt('输入实数x'))
@@ -55,8 +55,8 @@
     <script id="ch0103/09">
         var r = Number(prompt('输入实数r'))
         console.log((2 * r).toFixed(4))
-        console.log((Math.PI * 2 * r).toFixed(4))
-        console.log((Math.PI * r * r).toFixed(4))
+        console.log((3.14159 * 2 * r).toFixed(4))
+        console.log((3.14159 * r * r).toFixed(4))
     </script>
     <script id="ch0103/10">
         var r1 = Number(prompt('输入阻值r1'))
@@ -84,7 +84,7 @@
     <script id="ch0103/14">
         var h = Number(prompt('输入深h'))
         var r = Number(prompt('输入半径r'))
-        console.log((Math.PI * r * r * h) * 1000)
+        console.log(Math.ceil(20 / ((3.14159 * r * r * h) * 1000)))
     </script>
     <script id="ch0103/15">
         var n = Number(prompt('请输入个数n'))
