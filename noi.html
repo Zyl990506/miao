@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script id="ch0103/01">
+        var a = Number(prompt('输入a'))
+        var b = Number(prompt('输入b'))
+        console.log(a + b)
+    </script>
+    <script id="ch0103/02">
+        var a = Number(prompt('输入a'))
+        var b = Number(prompt('输入b'))
+        var c = Number(prompt('输入c'))
+        console.log((a + b) * c)
+    </script>
+    <script id="ch0103/03">
+        var a = Number(prompt('请输入a'))
+        var b = Number(prompt('请输入b'))
+        var c = Number(prompt('请输入c'))
+        console.log((a + b) / c)
+    </script>
+    <script id="ch0103/04">
+        var a = Number(prompt('输入被除数a'))
+        var b = Number(prompt('输入除数b'))
+        console.log(Math.floor(a / b))
+        console.log(a % b)
+    </script>
+    <script id="ch0103/05">
+        var a = Number(prompt('输入分子a'))
+        var b = Number(prompt('输入分母b'))
+        console.log((a / b).toFixed(9))
+    </script>
+
+    <script id="ch0103/06">
+        var a = Number(prompt('输入确诊数a'))
+        var b = Number(prompt('死亡数b'))
+        console.log(toPercent(a / b).toFixed(3))
+    </script>
+    <script id="ch0103/07">
+        var x = Number(prompt('输入实数x'))
+        var a = Number(prompt('输入参数a'))
+        var b = Number(prompt('输入参数b'))
+        var c = Number(prompt('输入参数c'))
+        var d = Number(prompt('输入参数d'))
+        console.log((a * x ** 3 + b * x ** 2 + c * x + d).toFixed(7))
+    </script>
+    <script id="ch0103/08">
+        var f = Number(prompt('输入实数f'))
+        console.log((5 * (f - 32) / 9).toFixed(5))
+    </script>
+    <script id="ch0103/09">
+        var r = Number(prompt('输入实数r'))
+        console.log((2 * r).toFixed(4))
+        console.log((Math.PI * 2 * r).toFixed(4))
+        console.log((Math.PI * r * r).toFixed(4))
+    </script>
+    <script id="ch0103/10">
+        var r1 = Number(prompt('输入阻值r1'))
+        var r2 = Number(prompt('输入阻值r2'))
+        var R = 1 / (1 / r1 + 1 / r2)
+        console.log(R.toFixed(2))
+    </script>
+    <script id="ch0103/11">
+        var a = Number(prompt('输入a'))
+        var b = Number(prompt('输入b'))
+        console.log(a % b)
+    </script>
+    <script id="ch0103/12">
+        var r = Number(prompt('输入实数r'))
+        var V = 4 / 3 * 3.14 * r ** 3
+        console.log(V.toFixed(2))
+    </script>
+    <script id="ch0103/13">
+        var n = Number(prompt('输入三位数n'))
+        var a = n % 10
+        var b = n % 100 - a
+        var c = (n - n % 100) / 100
+        console.log(a * 100 + b + c)
+    </script>
+    <script id="ch0103/14">
+        var h = Number(prompt('输入深h'))
+        var r = Number(prompt('输入半径r'))
+        console.log((Math.PI * r * r * h) * 1000)
+    </script>
+    <script id="ch0103/15">
+        var n = Number(prompt('请输入个数n'))
+        var x = Number(prompt('请输入x'))
+        var y = Number(prompt('请输入y'))
+        console.log(n - Math.ceil(y * x))
+    </script>
+    <script id="ch0103/16">
+        var Xa = Number(prompt('输入Xa'))
+        var Ya = Number(prompt('输入Ya'))
+        var Xb = Number(prompt('输入Xb'))
+        var Yb = Number(prompt('输入Yb'))
+        console.log(Math.sqrt((Xa - Xb) * (Xa - Xb) + (Ya - Yb) * (Ya - Yb)))
+    </script>
+    <script id="ch0103/17">
+        var Xa = Number(prompt('输入Xa'))
+        var Ya = Number(prompt('输入Ya'))
+        var Xb = Number(prompt('输入Xb'))
+        var Yb = Number(prompt('输入Yb'))
+    </script>
+    <script id="ch0103/18">
+        var n = Number(prompt('请输入n'))
+        var a1 = Number(prompt('请输入a1'))
+        var a2 = Number(prompt('请输入a2'))
+        console.log(a1 + (n - 1) * (a2 - a1))
+    </script>
+    <script id="ch0103/19">
+        var A = Number(prompt('输入A'))
+        var B = Number(prompt('输入B'))
+        console.log(A * B)
+    </script>
+    <script id="ch0103/20">
+        var n = Number(prompt('输入n'))
+        console.log(2 ** n)
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
