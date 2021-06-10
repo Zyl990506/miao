@@ -391,7 +391,7 @@
             allAge = allAge + age
             count = count + 1
         }
-        var r = allAge / N
+        var r = allAge / n
         console.log(r.toFixed(2))
     </script>
     <script id="ch0105/02">
@@ -435,7 +435,6 @@
     </script>
     <script id="ch0105/06">
         var n = Number(prompt('请输入n'))
-
         var max = -Infinity
         var min = Infinity
         for (var z = 0; z < n; z++) {
@@ -450,9 +449,32 @@
         console.log(max - min)
     </script>
     <script id="ch0105/07">
+        var n = Number(prompt('请输入n'))
+        var jin = 0
+        var yin = 0
+        var tong = 0
+        for (var z = 0; z < n; z++) {
+            var jin1 = Number(prompt())
+            var yin1 = Number(prompt())
+            var tong1 = Number(prompt())
+            jin = jin + jin1
+            yin = yin + yin1
+            tong = tong + tong1
+        }
+        var all = jin + yin + tong
+        console.log(jin, yin, tong, all)
     </script>
-    <script></script>
-    <script></script>
+    <script id="ch0105/08">
+        var n = Number(prompt('请输入n'))
+        var sum = 0
+        for (var z = 1; z < n; z = z + 1) {
+            var x = Number(prompt('请输入x'))
+            sum = sum + x
+        }
+        console.log((360 - 180 * n) - sum)
+    </script>
+    <script id="ch0105/09">
+    </script>
     <script></script>
     <script></script>
     <script></script>
