@@ -324,11 +324,22 @@
         var a = Number(prompt('输入a'))
         var b = Number(prompt('输入b'))
         var c = prompt('输入c')
+        if (c == '+' || c == '-' || c == '*') {
+            if (c == '+') {
+                console.log(a + b)
+            }
+            if (c == '-') {
+                console.log(a - b)
+            }
+            if (c == '*')
+                console.log(a * b)
+        }
         if (c == '/') {
             if (b == 0) {
                 console.log('Divided by zero!')
+            } else {
+                console.log(a / b)
             }
-        } else if (c == '+' || c == '-' || c == '*') {
 
         } else {
             console.log('Invalid operator!')
