@@ -471,12 +471,61 @@
             var x = Number(prompt('请输入x'))
             sum = sum + x
         }
-        console.log((360 - 180 * n) - sum)
+        console.log((180 * n - 360) - sum)
     </script>
     <script id="ch0105/09">
+        var a = Number(prompt("请输入整数"))
+        var b = Number(prompt("请输入整数"))
+        var sum = 0;
+        if (a % 2 == 0 && b % 2 == 0) {
+            for (var i = a + 1; i <= b; i = i + 2) {
+                sum = sun + i
+            }
+        } else if (a % 2 != 0 && b % 2 == 0) {
+            for (var i = a; i <= b; i = i + 2) {
+                sum = sum + i
+            }
+        } else if (a % 2 == 0 && b % 2 != 0) {
+            for (var i = a + 1; i <= b; i = i + 2) {
+                sum = sum + i
+            }
+        } else {
+            for (var i = a; i <= b; i = i + 2) {
+                sum = sum + i
+            }
+        }
+        console.log(sum);
     </script>
-    <script></script>
-    <script></script>
+    <script id="ch0105/10">
+        var m = Number(prompt())
+        var n = Number(prompt())
+        var sum = 0
+        for (var i = m; i <= n; i++) {
+            if (i % 17 == 0) {
+                sum = sum + i
+            }
+        }
+        console.log(sum)
+    </script>
+    <script id="ch0105/11">
+        var k = Number(prompt())
+        var x = 0
+        var y = 0
+        var z = 0
+        for (var i = 1; i < k; i++) {
+            var m = Number(prompt())
+            if (m == 1) {
+                x = x + 1
+            }
+            if (m == 5) {
+                y = y + 1
+            }
+            if (m == 10) {
+                z = z + 1
+            }
+        }
+        console.log(x, y, z)
+    </script>
     <script></script>
     <script></script>
     <script></script>
