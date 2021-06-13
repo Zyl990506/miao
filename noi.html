@@ -532,7 +532,7 @@
         var sum = 0
         for (var i = 1; i <= N; i++) {
             var a = Number(prompt())
-            if (a = m) {
+            if (a == m) {
                 sum = sum + 1
             }
         }
@@ -550,9 +550,8 @@
     <script id="ch0105/14">
         var x = Number(prompt())
         var n = Number(prompt())
-        var sum
         for (var i = 1; i <= n; i++) {
-            sum =
+            x = x + x * 0.001
         }
         console.log(sum.toFixed(4))
     </script>
@@ -561,7 +560,7 @@
         var M = Number(prompt())
         var Y = Number(prompt())
         for (var i = 1; i <= Y; i++) {
-            M = M * (1 + r / 100)
+            M = M * (1 + R / 100)
         }
         console.log(Math.floor(M))
     </script>
@@ -574,6 +573,7 @@
         }
         if (sum / n <= 20) {
             console.log(Math.ceil(sum / n))
+            break
         } else {
             console.log("Impossible")
         }
@@ -602,12 +602,12 @@
             var x1 = Number(prompt())
             var y1 = Number(prompt())
             var p1 = x1 / y1
-            if (p1 - p == 0) {
-                console.log('same')
-            } else if (p1 - p > 0.05) {
+            if (p1 - p > 0.05) {
                 console.log('better')
             } else if (p1 - p < 0.05) {
                 console.log('worse')
+            } else {
+                console.log('same')
             }
         }
     </script>
