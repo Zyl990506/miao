@@ -133,5 +133,92 @@ var zyl990506 = function() {
     }
 
 
+    function head(arr) {
+        return arr.shift()
+    }
+
+
+    function indexOf(arr, val, fromIndex = 0) {
+        for (var i = fromIndex; i < arr.length; i++) {
+            if (arr[i] == val) {
+                return i
+            }
+        }
+        return -1
+    }
+
+
+
+    function initial(arr) {
+        arr.pop()
+        return arr
+    }
+
+
+
+    function join(arr, separator = ',') {
+        var res = arr[0] + ''
+        for (var i = 1; i < arr.length; i++) {
+            res += separator + arr[i]
+        }
+        return res
+    }
+
+
+    function last(arr) {
+        return arr.pop()
+    }
+
+
+    function lastIndexOf(arr, val, fromIndex = arr.length - 1) {
+        for (var i = fromIndex; i > 0; i--) {
+            if (arr[i] == val) {
+                return i
+            }
+        }
+        return -1
+    }
+
+
+
+    function pull(arr, ...vals) {
+        var res = []
+        for (let i of arr) {
+            if (!vals.includes(i)) {
+                res.push(i)
+            }
+        }
+        return res
+    }
+
+
+
+    function zip(...arrs) {
+        var res = []
+        for (var i = 0; i < arrs[0].length; i++) {
+            res.push([])
+        }
+        for (var i = 0; i < arrs.length; i++) {
+            for (var j = 0; j < arrs[i].length; j++) {
+                res[j][i] = arrs[i][j]
+            }
+        }
+        return res
+    }
+
+
+
+    function unzip(...arrs) {
+        var res = []
+        for (var i = 0; i < arrs[0].length; i++) {
+            res.push([])
+        }
+        for (var i = 0; i < arrs.length; i++) {
+            for (var j = 0; j < arrs[i].length; j++) {
+                res[j][i] = arrs[i][j]
+            }
+        }
+        return res
+    }
 
 }
