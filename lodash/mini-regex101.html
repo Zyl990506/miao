@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 设置正则表达式和内容输入框的宽度 */
+        
+        input[type="text"],
+        textarea {
+            width: 300px;
+        }
+        /* 设置按钮字体和光标悬停样式为手 */
+        
+        label {
+            font-family: consolas;
+            cursor: pointer;
+        }
+        
+        label input {
+            cursor: pointer;
+        }
+        
+        em {
+            background-color: #9fcfff;
+            font-style: normal;
+            /*字体正常*/
+        }
+        
+        em:nth-of-type(even) {
+            background-color: #d5edff;
+            /*奇数项颜色不同*/
+        }
+        
+        section {
+            width: 300px;
+            position: relative;
+        }
+        
+        section textarea,
+        section pre {
+            padding: 5px;
+            border: ;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        请输入正则表达式：
+        <label><input type="checkbox" onclick="run()"  id="ignoreCase">i</label>
+        <label><input type="checkbox" checked onclick="run()"  id="global">g</label>
+        <label><input type="checkbox" onclick="run()"  id="multiline">m</label><br>
+
+        <input type="text" id="reg" onkeyup="run()"> <br> 请输入内容： <br>
+        <textarea name="" id="strInput" cols="30" onkeyup="run()" rows="10"></textarea>
+    </div>
+    <pre id="result"> 
+
+    </pre>
+    <script>
+        function run() {
+            var regSource = reg.value //拿到输入的正则表达式内容
+            var flags = getFlags() //
+            var re = new RegExp(regSource, flags)
+            console.log(re)
+            var str = strInput.value
+            var match
+            if (re.global) {
+                var resultHTML = ''
+                var lastIndex = re.lastIndex
+                while (match = re.exec(str)) {
+                    resultHTML += str.slice(lastIndex, match.index)
+                    resultHTML += '<em>' + match[0] + '</em>'
+                    lastIndex = re.lastIndex
+                }
+                resultHTML += str.slice(lastIndex)
+                result.innerHTML = resultHTML
+            } else { // no global
+                var resultHTML = ''
+                match = re.exec(str)
+                resultHTML += str.slice(0, match.index)
+                resultHTML += '<em>' + match[0] + '<em>'
+                resultHTML += str.slice(match[0].length + match.index)
+                result.innerHTML = resultHTML
+            }
+        }
+
+        run()
+
+        function getFlags() {
+            var flags = ''
+            if (ignorCase.checked) {
+                flags += 'i'
+            }
+            if (global.checked) {
+                flags += 'g'
+            }
+            if (multiline.checked) {
+                flags += 'm'
+            }
+            return flags
+        }
+    </script>
+</body>
+
+</html>

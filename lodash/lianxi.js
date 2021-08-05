@@ -62,7 +62,7 @@ function keys(obj) {
 
 
 
-
+// 二叉堆
 class PriorityQueue {
     constructor() {
         this.elements = []
@@ -70,23 +70,59 @@ class PriorityQueue {
     _swap(i, j) {
             var t = this.elements[i]
             this.elements[i] = this.elements[j]
+            this.elements[j] = t
+        }
+        // 从idx位置开始时向上调整
+    heapUp(idx) {
+            while (idx > 0) {
+                var pIdx = (idx - 1) >> 1
+                if (this.elements[pIdx] < this.elements[idx]) {
+                    this._swap(idx, pIdx)
+                    idx = pIdx
+                } else {
+                    return
+                }
+            }
+        }
+        // 从idx位置向下调整
+    heapDown(idx) {
+            var l = this.elements.length
+            while (idx < l) {
+                var maxIdx = idx
+                var lIdx = maxIdx * 2 + 1
+                var rIdx = maxIdx * 2 + 2
+                if (lIdx < l && this.elements[lIdx] > this.elements[maxIdx]) {
+                    maxIdx = lIdx
+                }
+                if (rIdx < l && this.elements[rIdx] > this.elements[maxIdx]) {
+                    maxIdx = rIdx
+                }
+                if (maxIdx !== idx) {
+                    this._swap(maxIdx, idx)
+                } else {
+                    return
+                }
+            }
         }
         // 往堆里增加一个元素
     push(val) {
             this.elements.push(val)
-            var idx = this.elements.length - 1
-            var pIdx = (idx - 1) >> 1
-            if (this.elements[pIdx] > this.elements[idx]) {
-                this._swap(idx, pIdx)
-            }
+            this.heapUp(this.elements.length - 1)
+            return this
         }
-        // 将堆顶元素删除并返回
+        // 将堆顶元素删除并返回 
     pop() {
-        var result = this.elements[0]
-        this.elements[0] = this.elements.pop()
-        this.heapDown(0)
+            var result = this.elements[0]
+            this.elements[0] = this.elements.pop()
+            this.heapDown(0)
+            return result
+        }
+        //查看堆顶元素，不删除它
+    peek() {
+        return this.elements[0]
     }
 }
+
 
 
 
@@ -323,6 +359,9 @@ function NEW(Constructor, ...args) {
 
 
 
+
+
+
     class ListNode {
         constructor(key, val) {
             this.key = key
@@ -332,8 +371,22 @@ function NEW(Constructor, ...args) {
     }
     class HashMap {
         constructor() {
-            this.elements = new Array(16).fill(null)
+            this._capacity = 16
             this._size = 0
+            this.elements = new Array(this._capacity).fill(null)
+        }
+        rehash() {
+            var _elements = this._elements
+            var l = this.elements.length
+            this._capacity = this._capacity * 2
+            var _elements = new Array(this._capacity).fill(null)
+            this._size = 0
+            for (var i = 0; i < 1; i++) {
+                var head = this.elements[i]
+                while (head) {
+                    this.set(head.ley, head.val)
+                }
+            }
         }
         hashkey(str) {
             var hash = 13131133
@@ -358,6 +411,10 @@ function NEW(Constructor, ...args) {
                 var node = new ListNode(key, val)
             node.next = this.elements[idx]
             this.elements[idx] = node
+            this._size++
+                if (this._size / this._capacity > 0.75) {
+                    this.rehash() // 扩容
+                }
             return this
         }
         get(key) {
@@ -384,6 +441,65 @@ function NEW(Constructor, ...args) {
         delete(key) {
             var idx = this.hashkey(key)
             var head = this.elements[idx]
-            if (!head)
+            if (!head) {
+                return false
+            }
+            if (head.key == key) {
+                rhis.elements[idx] = head.next
+                this._size--
+                    return true
+            }
+            while (head.next) {
+                if (head.next.key == key) {
+                    head.next = head.next.next
+                    this._size--
+                        return true
+                }
+            }
+            return false
+        }
+        get size() {
+            return this._size
+        }
+
+
+
+
+
+
+
+        正则表达式\ d = [0 - 9]\ w = [0 - 9 a - zA - Z_]\ s = 任意空白符[ ^ ] 表示可以匹配任意符号包括换行等 *
+            允许出现零次或多次？ 表示左边的字符出现零次或一次 { 4 }
+        表示必须出现4次 { 2, 4 }
+        表示2到4次 { 4， }
+        表示4次以上
+        i 对大小写不敏感
+            ?
+            : 不分组， 不出现？ < > 起名分组 ^
+            开始符号
+        $ 结束符号
+            ^
+            !以！ 开始\ b 单词边界
+        momentjs.com
+        零宽断言：
+        断言某个位置左边或右边满足或不满足某种条件
+            "正"
+        指要要遇见某种模式, "负"
+        指不能匹配某种模式
+            "预测"
+        指向右匹配， "回顾"
+        指向左匹配
+        正预测先行断言(positive lookahead)：( ? = foo) 要求某个位置的右边匹配xxx
+        负预测先行断言(negative lookahead)：( ? !foo) 要求某个位置的右边不能匹配xxx
+        正回顾后发断言(positive lookbehind)：( ? <= foo) 要求某个位置的左边匹配xxx
+        负回顾后发断言(negative lookbehind)：( ? < !foo) 要求某个位置的左边不能匹配xxx
+        需要注意的是， 零宽断言的匹配必须发生在断言位置的旁边， 紧挨着断言位置
+        多个断言可以连续断言同一个位置， 即要求同一个位置满足多个不同的条件
+            ( ? < !.) 等价于多行情况下的 ^ , 匹配每行的开头： 左边不能遇到除回车以外的任意符号( ? < ![ ^ ]) 等价于单行情况下的 ^ ，匹配字符串的开头： 左边不能遇到任意符号( ? !.) 等价于多行情况下的 $, 匹配每行的开头： 右边不能遇到除回车以外的任意符号( ? ![ ^ ]) 等价于单行情况下的 $， 匹配字符串的开头： 右边不能遇到任意符号( ? <= \w)( ? !\w) | ( ? < !\w)( ? = \w) 等价于\ b
+
+
+
+
+        String.prototype.split2 = function {
 
         }
