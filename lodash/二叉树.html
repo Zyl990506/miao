@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    二叉树的定义： 空 一个结点有两颗子树，子树分别也会二叉树 基本为递归 完全二叉树： 除最后两层以外，从上到下，从左到右所有的结点都有子结点 满二叉树： 除最后一层的所有结点都没有子节点(左右子树都为空)，其他所有结点都有两个非空子树 对于满二叉树来说，从上往下每层的结点数量都加倍的，总结点数量一定是2的n次方减1 最顶层的结点为根结点(root node) 没有子结点的结点称为叶子结点(leaf node) 在任意二叉树中，空子树的数量正比非空结点的数量多1 因为有n个结点的树，一定有2n个从结点伸出的指针
+    而除根结点以外每个结点都正好由一个指针指向，于是2n-n+1就得到指向空子树的指针数量 即为n+1，所以正好多1 二叉树的表示: 二叉链表： 类似链表，但每个结点都可以伸出两个指针 数组表示法： 将二叉的所有空点补满成为一颗满二叉树，然后从上到下从左到右将结点的值放入数组 此种结构根结点在数组的第1项(下标0) 在下标n的结点的两个子结点的位置为2n+1和2n+2 下标为m的结点的夫结点在floor((m-1) / 2)位置
+
+    <script>
+        function createTreeNode(val) {
+            return {
+                val: val,
+                left: null,
+                right: null
+            }
+        }
+        // 将储存在array中的根结点在rootIdx位置的二叉树转换为二叉链表
+        function arrayToTree(array, rootIdx = 0) {
+            var rootVal = array[rootIdx]
+            if (rootVal == null) {
+                return null
+            }
+            var rootNode = createTreeNode(rootVal)
+
+            rootNode.left = arrayToTree(array, rootIdx * 2 + 1)
+            rootNode.right = arrayToTree(array, rootIdx * 2 + 2)
+
+            return rootNode
+        }
+
+
+        // 将使用二叉链表表示的二叉树转换为数组表示
+        function tree2array(root) {
+            var ary = []
+            return treeToArray(root, 0, ary)
+        }
+
+        function treeToArray(root, idx = 0, ary = []) {
+            if (root) {
+                ary[idx] = root.val
+                treeToArray(root.left, idx * 2 + 1, ary)
+                treeToArray(root.right, idx * 2 + 2, ary)
+            }
+            return ary
+        }
+
+        function treeToCondensedArray(root) {
+            if (!root) {
+                return []
+            }
+            var nodes = [root]
+            var result = []
+            for (var i = 0; i < nodes.length; i++) {
+                var node = nodes[i]
+                if (node) {
+                    result.push(node.val)
+                    nodes.push(n ode.left)
+                    nodes.push(node.right)
+                } else {
+                    result.push(null)
+                }
+            }
+            return result
+        }
+
+        function cArrayToTree(arr) {
+            if (arr.length = 0) {
+                return null
+            }
+            var root = createTreeNode(arr[0])
+            var nodes = [root]
+            var j = 0
+            for (var i = 1; i < arr.length; i++) {
+                var node = nodes[j++]
+                if (arr[i] == null) {
+                    node.left = null
+                } else {
+                    node.left = createTreeNode(arr[i])
+                    nodes.push(node.left)
+                }
+                if (arr[i++] == null) {
+                    node.right = null
+                } else {
+                    node.right = createTreeNode(arr[i++])
+                    nodes.push(node.right)
+                }
+            }
+            return root
+        }
+
+        function treeToKuoHao(tree) {
+            if (tree) {
+                if (!tree.left && !tree.right) {
+                    return '' + tree.val
+                }
+                return tree.val + '(' + treeToKuoHao(tree.left) + ')(' + treeToKuoHao(tree.right) + ')'
+            } else {
+                return ''
+            }
+        }
+
+        // 二叉树的遍历
+
+        //  如果把一本书的章、节、小结一起排序
+        //  按看过的顺序，则得到先序遍历序列
+        //  按看完的顺序，则得到后序遍历序列
+        //  按看了一部分的顺序，则得到中序遍历序列
+
+        function preOrderTraverse(root, action) {
+            if (root) {
+                action(root.val)
+                preOrderTraverse(root.left, action)
+                preOrderTraverse(root.right, action)
+            }
+        }
+
+        function inOrderTraverse(root, action) {
+            if (root)
+                inOrderTraverse(root.left, action)
+            action(root.val)
+            inOrderTraverse(root.right)
+        }
+
+        function postOrderTraverse(root, action) {
+            if (root) {
+                postOrderTraverse(root.left)
+                postOrderTraverse(root.right)
+                action(root.val)
+            }
+        }
+        }
+    </script>
+</body>
+
+</html>

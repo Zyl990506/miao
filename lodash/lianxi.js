@@ -495,11 +495,112 @@ function NEW(Constructor, ...args) {
         负回顾后发断言(negative lookbehind)：( ? < !foo) 要求某个位置的左边不能匹配xxx
         需要注意的是， 零宽断言的匹配必须发生在断言位置的旁边， 紧挨着断言位置
         多个断言可以连续断言同一个位置， 即要求同一个位置满足多个不同的条件
-            ( ? < !.) 等价于多行情况下的 ^ , 匹配每行的开头： 左边不能遇到除回车以外的任意符号( ? < ![ ^ ]) 等价于单行情况下的 ^ ，匹配字符串的开头： 左边不能遇到任意符号( ? !.) 等价于多行情况下的 $, 匹配每行的开头： 右边不能遇到除回车以外的任意符号( ? ![ ^ ]) 等价于单行情况下的 $， 匹配字符串的开头： 右边不能遇到任意符号( ? <= \w)( ? !\w) | ( ? < !\w)( ? = \w) 等价于\ b
+            ( ? < !.) 等价于多行情况下的 ^ , 匹配每行的开头： 左边不能遇到除回车以外的任意符号( ? < ![ ^ ]) 等价于单行情况下的 ^ ，匹配字符串的开头： 左边不能遇到任意符号( ? !.) 等价于多行情况下的 $, 匹配每行的开头： 右边不能遇到除回车以外的任意符号( ? ![ ^ ]) 等价于单行情况下的 $， 匹配字符串的开头： 右边不能遇到任意符号( ? <= \w)( ? !\w) | ( ? < !\w)( ? = \w) 等价于\ b /
+            .(.)\ 1 / = /(.)(.)\2/ = abb /
+            (.)(.)\ 1 / = aab
 
 
 
 
-        String.prototype.split2 = function {
+        var str = '[1, "fooo",[1,222235,true],{"a":1,'
+        b ':[1,2,3],"c":{"x":1,"yyy":false}},5,null]'
+        var i = 0
 
+        function parseValue() {
+            var
+        }
+
+        function parseTrue() {
+
+        }
+
+        function parseFalse() {
+
+        }
+
+        function parseNull() {
+
+        }
+        //此时i指向数组开始的中括号([)， 解析出这个数组
+        function parseArray() {
+            var result = []
+            i++
+            if (str[i] == ']') {
+                i++
+                return result
+            }
+            while (true) {
+                var val = parseValue()
+                result.push(val)
+                if (str[i] == ']') {
+                    i++
+                    return result
+                } else if (str[i] == ',') {
+                    i++ //跳过这个逗号
+                }
+            }
+        }
+
+        // 此时i指向对象开始的中括号({), 解析出这个对象， 移动i到对象后面， 并返回解析出的对象
+        function parseObject() {
+            var result = {}
+            if (str[i] == '}') {
+                i++
+                return result
+            }
+            var key = parseString()
+            i++ //跳过冒号
+            var val = parseArray()
+            while (true) {
+
+
+            }
+        }
+
+
+
+        // 传入什么属性名， 它返回的函数就用来获取对象的什么属性名 
+        function property(prop) {
+            return function(obj) {
+                return obj[prop]
+            }
+        }
+
+        $0.normalize() // 将元素子元素中连续的文本结点合并成一个
+        function normalize(node) {
+            if (node.nodeType == document.ELEMENT_NODE) {
+                var str = ''
+                var childs = Array.from(node.childNodes)
+                for (var i = 0; i < node.childNodes.length; i++) {
+                    var child = node.childNodes[i]
+                    if (child.nodeType == document.TEXT_NODE) {
+                        str += child.data
+                        node.removeChild(child)
+                    } else {
+                        if (str.length) {
+                            var textNode = document.createTextNode(str)
+                            node.insertBeFore(textNode, child)
+                            str = ''
+                        }
+                    }
+                }
+                if (str.length) {
+                    var textNode = document.createTextNode(str)
+                    node.appendChild(textNode)
+                }
+            }
+        }
+
+
+
+        function elt(name, attrs, ...childs) {
+            var node = document.createElement(name)
+            for (var key in attrs) {
+                var val = attrs[key]
+                node[key] = val
+            }
+            for (var child of childs) {
+                node.append(child)
+            }
+            return node
         }

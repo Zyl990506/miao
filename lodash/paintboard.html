@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .dot {
+            width: 6px;
+            height: 6px;
+            background-repeat: 1000px;
+            background-color: pink;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        // var draw = false
+        // document.addEventListener('mousedown', function(e) {
+        //     draw = true
+        // })
+        // document.addEventListener('mouseup', function(e) {
+        //     draw = false
+        // })
+        // document.addEventListener('mousemove', function(e) {
+        //     console.log(e)
+        //     if (draw) {
+        //         var dot = document.createElement('span')
+        //         dot.classList.add('dot')
+        //         dot.style.left = e.pageX - 3 + 'px'
+        //         dot.style.top = e.pageY - 3 + 'px'
+        //             // dot.style.transform = `translate(${e.pageX - 3}px, ${e.pageY - 3}px)`
+        //         document.body.append(dot)
+
+        //     }
+
+        // })
+
+        document.addEventListener('mousedown', function(e) {
+            function drawDot(e) {
+                if (true) {
+                    var dot = document.createElement('span')
+                    dot.classList.add('dot')
+                    dot.style.left = e.pageX - 3 + 'px'
+                    dot.style.top = e.pageY - 3 + 'px'
+                        // dot.style.transform = `translate(${e.pageX - 3}px, ${e.pageY - 3}px)`
+                    document.body.append(dot)
+                }
+            }
+        })
+        document.addEventListener('mousemove', drawDot)
+        document.addEventListener('mouseup', function onec() {
+            document.removeEventListener('mouseup', once)
+            document.removeEventListener('mousemove', drawDot)
+        })
+    </script>
+</body>
+
+</html>

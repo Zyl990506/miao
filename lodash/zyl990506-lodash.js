@@ -1,3 +1,4 @@
+\
 var zyl990506 = function() {
     function chunk(array, size) {
         var result = []
@@ -108,29 +109,14 @@ var zyl990506 = function() {
     }
 
 
-    function reverse(arr) {
-        var left = 0
-        var right = arr.length - 1
-        while (left < right) {
-            var a = arr[left]
-            arr[left] = arr[right]
-            arr[right] = a
-            left++
-            right--
+    function fromPairs(pairs) {
+        var map = {}
+        for (var i = 0; i < pairs.length; i++) {
+            map[pairs[i][0]] = pairs[i][1]
         }
-        return arr
+        return map
     }
 
-
-    function uniq(arr) {
-        var res = []
-        for (var i = 0; i < arr.length; i++) {
-            if (!res.includes(arr[i])) {
-                res.push(arr[i])
-            }
-        }
-        return res
-    }
 
 
     function head(arr) {
@@ -192,6 +178,81 @@ var zyl990506 = function() {
     }
 
 
+    function reverse(arr) {
+        var left = 0
+        var right = arr.length - 1
+        while (left < right) {
+            var a = arr[left]
+            arr[left] = arr[right]
+            arr[right] = a
+            left++
+            right--
+        }
+        return arr
+    }
+
+
+
+    function sortedIndex(arr, val) {
+        var l = 0
+        var r = arr.length
+        while (l < r) {
+            var m = Math.floor(l + r) / 2
+            if (arr[m] > val) {
+                l = m + 1
+            }
+            if (arr[m] < val) {
+                r = m
+            }
+        }
+        return r
+    }
+
+
+
+    function union(...arr) {
+        var res = []
+        for (var i = 0; i < arr.length; i++) {
+            for (var j = 0; j < arr[i].length; j++) {
+                if (!res.includes(arr[i][j])) {
+                    res.push(arr[i][j])
+                }
+            }
+        }
+        return res
+
+        // function union(...arr) {
+        //     var res = []
+        //     arr.forEach((item) => {
+        //         item.forEach((j) =>{
+        //             if(!res.includes(j)) {
+        //                 res.push(j)
+        //             }
+        //         })
+        //     })
+        //     return res
+        // }
+    }
+
+
+
+    function uniq(arr) {
+        var res = []
+        for (var i = 0; i < arr.length; i++) {
+            if (!res.includes(arr[i])) {
+                res.push(arr[i])
+            }
+        }
+        return res
+    }
+
+
+    function uniqBy(arr) {
+        var res = []
+        for (var i = )
+    }
+
+
 
     function zip(...arrs) {
         var res = []
@@ -219,6 +280,19 @@ var zyl990506 = function() {
             }
         }
         return res
+    }
+
+
+
+
+
+
+    function concat(arr, vals) {
+        var res = []
+        for (var i = 0; i < arr.length; i++) {
+            res.push(arr[i])
+        }
+
     }
 
 }
