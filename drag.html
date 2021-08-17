@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .dimetric {
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            user-select: none;
+        }
+        /* .roundness {
+            width: 50px;
+            height: 50px;
+            border-radius: 9999px;
+            background-color: pink;
+            position: absolute;
+        }
+        
+        .trilateral {
+            width: 0;
+            height: 0;
+            border: 30px solid transparent;
+            border-bottom: 30px solid green;
+            position: absolute;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="dimetric" style="left: 20px;top: 20px; background-color: pink;"></div>
+    <div class="dimetric" style="left: 30px;top: 30px; background-color: plum;"></div>
+    <div class="dimetric" style="left: 40px;top: 40px; background-color: purple;"></div>
+
+    <script>
+        // var dim = document.querySelector('.dimetric')
+
+        var maxZidnex = 4 //设置层叠顺序
+        document.addEventListener('mousedown', function(e) { //设置鼠标点击事件
+
+            if (!e.target.classList.contains('dimetric')) { // 如果有target属性为dimetric，则下一步
+                return
+            }
+
+
+            var startx = e.clientX //记录鼠标开始时的位置
+            var starty = e.clientY
+            var el = e.target
+            el.style.zIndex = maxZidnex++ //动一个div则层叠加1
+                var elStartx = parseFloat(el.style.left) // 记录元素的初始位置
+            var elStarty = parseFloat(el.style.top)
+            window.addEventListener('mousemove', function move(ev) { // 给窗口绑鼠标移动事件
+                if (ev.which === 0 || ev.buttons === 0) { // 鼠标松开则解绑鼠标移动事件
+                    window.removeEventListener('mousemove', move)
+                    return
+                }
+                var lastx = ev.clientX //记录移动到的位置
+                var lasty = ev.clientY
+                var dx = lastx - startx // 记录从开始到结束移动的距离
+                var dy = lasty - starty
+                    // startx = lastx
+                    // starty = lasty
+                var left = elStartx + dx //算出元素要移动的距离
+                var top = elStarty + dy
+                    // left = Math.max(left, 0)
+                    // left = Math.min(left, window.innerWidth - dim.offsetWidth)
+                if (left < 0) { // 可以设置磁吸
+                    left = 0
+                }
+                if (left > window.innerWidth - el.offsetWidth) {
+                    left = window.innerWidth - el.offsetWidth
+                }
+                // top = Math.max(top, 0)
+                // top = Math.min(top, window.innerHeight - dim.offestHeight)
+                if (top < 0) { // 可以设置磁吸
+                    top = 0
+                }
+                if (top > window.innerHeight - el.offestHeight) {
+                    top = window.innerHeight - el.offestHeight
+                }
+
+                el.style.left = left + 'px' //设置div移动的距离
+                el.style.top = top + 'px'
+            })
+        })
+    </script>
+</body>
+
+</html>

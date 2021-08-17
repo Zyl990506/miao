@@ -67,7 +67,7 @@
         section textarea {
             position: relative;
             z-index: 8;
-            border-color: transparent;
+            background-color: transparent;
         }
         
         section pre {
@@ -91,23 +91,22 @@
         <label><input type="checkbox" checked onclick="run()"  id="global">g</label>
         <label><input type="checkbox" onclick="run()"  id="multiline">m</label>
         <br>
-        <input type="text" id="reg" value="fo." onkeyup="run()"> <br>
-        <p id="regError"></p>
+        <input type="text" id="reg" value="fo." onkeyup="run()"> <br> 
         请输入内容： <br>
         <section>
-            <textarea name="" id="strInput" cols="30" rows="10" onkeyup="run()" rows="10">foobasdwae 
+            <pre id="result"> 
+                
+            </pre>
+            <textarea name="" id="strInput" cols="30" rows="10" rows="10" onkeyup="run()">foobasdwae 
                 dsadasdfob foa focwqsadfoowqeqwfsi sduxcolj
                 1241513 foo 
                 asf121241234 324 aswgfawe
             </textarea>
-            <pre id="result"> 
-            </pre>
         </section>
-
     </div>
     <script>
         function run() {
-            console.time('run')
+
             var regSource = reg.value //拿到输入的正则表达式内容
             var flags = getFlags() //
             var re = new RegExp(regSource, flags)
@@ -126,16 +125,16 @@
                     }
                 }
                 resultHTML += str.slice(lastIndex)
-                result.innerHTML = resultHTML + '\n'
+                result.innerHTML = resultHTML
             } else { // no global
                 var resultHTML = ''
                 match = re.exec(str)
                 resultHTML += str.slice(0, match.index)
-                resultHTML += '<em>' + match[0] + '<em>'
+                resultHTML += '<em>' + match[0] + '</em>'
                 resultHTML += str.slice(match[0].length + match.index)
-                result.innerHTML = resultHTML + '\n'
+                result.innerHTML = resultHTML
             }
-            console.time('run')
+
         }
 
         run()

@@ -44,22 +44,30 @@
         // })
 
         document.addEventListener('mousedown', function(e) {
-            function drawDot(e) {
-                if (true) {
-                    var dot = document.createElement('span')
-                    dot.classList.add('dot')
-                    dot.style.left = e.pageX - 3 + 'px'
-                    dot.style.top = e.pageY - 3 + 'px'
-                        // dot.style.transform = `translate(${e.pageX - 3}px, ${e.pageY - 3}px)`
-                    document.body.append(dot)
+                function drawDot(e) {
+                    if (true) {
+                        var dot = document.createElement('span')
+                        dot.classList.add('dot')
+                        dot.style.left = e.pageX - 3 + 'px'
+                        dot.style.top = e.pageY - 3 + 'px'
+                            // dot.style.transform = `translate(${e.pageX - 3}px, ${e.pageY - 3}px)`
+                        document.body.append(dot)
+                    }
                 }
-            }
-        })
-        document.addEventListener('mousemove', drawDot)
-        document.addEventListener('mouseup', function onec() {
-            document.removeEventListener('mouseup', once)
-            document.removeEventListener('mousemove', drawDot)
-        })
+                document.addEventListener('mousemove', drawDot)
+                document.addEventListener('mouseup', function onec() {
+                    document.removeEventListener('mouseup', once)
+                    document.removeEventListener('mousemove', drawDot)
+                })
+            })
+            //d3.js里的一个函数
+            //   function mousePos(node) {
+            //       var box = node.getBoundingClientRect()
+            //       return {
+            //           x: window.event.clientX - box.x,
+            //           y: window.event.clientY - box.y,
+            //       }
+            //   }
     </script>
 </body>
 

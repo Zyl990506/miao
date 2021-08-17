@@ -8,18 +8,17 @@
     <title>Document</title>
     <style>
         #sun,
-        #earch,
-        #moom {
+        #earth,
+        #moon {
             display: block;
             position: absolute;
             border-radius: 99999px;
             background-color: red;
             width: 50px;
             height: 50px;
-            transform: translate(-50%, -50%);
         }
         
-        #earch {
+        #earth {
             background-color: blue;
             width: 30px;
             height: 30px;
@@ -30,41 +29,53 @@
             width: 10px;
             height: 10px;
         }
+        
+        section {
+            display: block;
+            width: 500px;
+            height: 500px;
+            position: relative;
+            left: 50%;
+            top: 300px
+        }
     </style>
 </head>
 
 <body>
-
-    <div id="sun"></div>
-    <div id="earth"></div>
-    <div id="moon"></div>
+    <section>
+        <div id="sun"></div>
+        <div id="earth"></div>
+        <div id="moon"></div>
+    </section>
 
     <script>
-        var sun = document.querySelector('#sun')
+        var sun = document.querySelector('#sun') // 获取sun earth moon3个元素
         var earth = document.querySelector('#earth')
         var moon = document.querySelector('#moon')
 
-        var angle1 = 0
+        var angle1 = 0 // 设置初始角度为0
         var angle2 = 0
         var angle3 = 0
 
-        requestAnimationFrame(function animate(time) {
-            angle1 = time * 0.0003
-            angle2 = time * 0.001
-            angle3 = time * 0.004
 
-            var x1 = Math.cos(angle1) * 150 + 200
-            var y1 = Math.sin(angle1) * 150 + 200
+        requestAnimationFrame(function animate(time) {
+
+            angle1 = time * 0.0003 //设置角度随时间的变化
+            angle2 = time * 0.001
+            angle3 = time * 0.005
+
+            var x1 = Math.cos(angle1) * 150 - 25 //设置sun的x，y的坐标
+            var y1 = Math.sin(angle1) * 150 - 25
             sun.style.left = x1 + 'px'
             sun.style.top = y1 + 'px'
 
-            var x2 = Math.cos(angle2) * 100 + x1
-            var y2 = Math.sin(angle2) * 100 + y1
+            var x2 = Math.cos(angle2) * 100 + x1 + 15 // 设置earth随着sun变化的坐标
+            var y2 = Math.sin(angle2) * 100 + y1 + 15
             earth.style.left = x2 + 'px'
             earth.style.top = y2 + 'px'
 
-            var x3 = Math.cos(angle3) * 150
-            var y3 = Math.sin(angle3) * 150
+            var x3 = Math.cos(angle3) * 50 + x2 + 10 // 设置moon随着earth变化的坐标
+            var y3 = Math.sin(angle3) * 50 + y2 + 10
             moon.style.left = x3 + 'px'
             moon.style.top = y3 + 'px'
 

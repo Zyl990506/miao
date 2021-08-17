@@ -16,12 +16,28 @@
     </ul>
     <script>
         var lis = document.querySelectorAll('li')
+        var ul = document.querySelectorAll('ul')
+            //第一种
         for (let i = 0; i < lis.length; i++) {
             var li = lis[i]
             li.addEventListener('click', e => {
                 console.log(i)
             })
         }
+        // 第二种
+        for (var i = 0; i < lis.length; i++) {
+            (function(i) {
+                var li = lis[i]
+                li.addEventListener('click', e => {
+                    console.log(i)
+                })
+
+            })(i) // IIFE
+        }
+        // 第三种
+        ul.addEventListener('click', function(e) {
+            console.log(Array.from(ul.children).indexOf(e.target) + 1)
+        })
     </script>
 </body>
 

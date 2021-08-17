@@ -120,3 +120,60 @@ elt('div', { class: 'foo', id: 'bar', title: 'baz' },
     'qfvzxdsad',
     elt('span')
 )
+
+$0.textContent // 把$0中的文本结点拼接出来(去掉标签)
+$0.textContent = '' // 在$0中加入文本(加入标签则直接为文本) 、
+$0.innerHtml = '' // innerHtml加入的标签就是标签
+$0.outerText === $0.innerHtml
+
+function getTextContent(node) { // 返回node结点的文本内容
+    if (node.nodetype == document.TEXT_NODE) {
+        return node.data
+    } else if (node.nodetype == document.ELEMENT_NODE) {
+        return Array.from(node.ChildNodes).map(getTextContent).join('')
+    }
+    return ''
+}
+
+function gitOuterHTML(node) { //node元素从开始到结束所有html标签
+    if (node.nodetype == document.TEXT_NODE) {
+        return node.data
+    } else if (node.nodetype == document.ELEMENT_NODE) {
+        var tagName = node.tagName.toLowerCase() //转为小写
+        var attrNames = node.getAttributeName() // 拿到标签中的属性名和属性值
+        var attrs = attrNames.map(name => { //将一个标签的所有属性名和属性值map出来组成字符串
+            var val = node.getAttributeName(name) //拿到每个属性名的属性值
+            return name + '="' + val + '"'
+        }).join('')
+        return '<' + tagName + attrs + '>' + Array.from(node.ChildNodes).map(getTextContent).join('') + '</' + tagName + '>'
+            // return `<${node.tagName(返回当前元素的标签名)} ${attrs}>` +  Array.from(node.ChildNodes).map(getTextContent).join('') + `</${node.tagName}>` 
+    }
+
+}
+
+function getInnerHTML(node) {
+    var result = ''
+    for (var child of node.childNodes) {
+        if (child.nodeType == document.TEXT_NODE) {
+            result += child.data
+        } else if (child.nodeType == document.ELEMENT_NODE) {
+            var tagName = child.tagName.toLowerCase()
+            var attrNames = child.getAttributeNames()
+            var attrs = attrNames.map(name => {
+                var val = child.getAttribute(name)
+                return name + '="' + val + '"'
+            }).join(' ')
+            result += `<${tagName} ${attrs}>` + getInnerHTML(child) + `</${tagName}>`
+        }
+    }
+    return result
+}
+
+window.scrollTo(0, 0) //  绝对滚动 直接滚动到0,0位置
+window.scrollBy(0, 10) // 相对滚动  相对于现在的位置向下滚动10
+$0.classList // 方便操作标签里的class属性
+$0.classList.add() // 在class属性中加入
+$0.classList.remove() // 删除
+$0.classList.toggle() // 如果有就删除，如果没有就加入
+$0.classList.replace('a', 'b') // 把原来的a替换为b
+xxx.preventDefault() // 阻止浏览器为其执行默认事件

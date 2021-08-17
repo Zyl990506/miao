@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        window.addEventListener('beforeunload', function(e) { // 退出提示功能
+            e.returnValue = '别关。。。。'
+        })
+
+        function swapNade(a, b) { // 结点a b 换位置
+            if (a.contains(b) || b.contains(a)) //如果包含指定的字符或字符串返回 true，否则返回 false。
+                return false
+        }
+        var placeholder = document.createTextNode('') //建一个空的文本结点
+        var a1 = a.parentNode
+        var b1 = b.parentNode
+        a1.insertBefore(placeholder, a) // 把空文本结点放在a的前面
+        b1.replaceChild(a, b) // 用a结点换掉b结点
+        a1.replaceChild(b, placeholder) // 再用b结点换掉空白结点
+        return true
+
+
+        xxx.addEventListener('click', function() {}, {
+            capture: true, // true表示捕获阶段，false表示冒泡阶段
+            passive: true, // 被动事件，意指事件函数中不会调用preventDefault()方法
+        })
+
+
+        $0.tabindex = xxx //给结点增加焦点
+
+        window.scrollY / (document.body.offsetHeight - window.innerHeight) //当前滚动位置的百分比
+            // scroll事件是在滚动发生之后触发的，preventDefault()无法阻止scroll事件的默认行为
+        window.onload = function() //在页面中所有资源（图片，字体等）加载完成时触发，只触发一次
+        document.addEventListener('DOMContentLoaded', function() {
+            // 在DOM树构建完成时触发，只触发一次
+        })
+    </script>
+</body>
+
+</html>

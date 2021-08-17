@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <p style="text-align: center;">
+        <span style="position: relative; margin-top: 250px;">Cat</span>
+    </p>
+    <script>
+        var r = 150
+        var cat = document.querySelector('span')
+        var angle = 0
+        var lastTime = null
+
+        function animate(time) {
+            if (lastTime !== null) {
+                angle += (time - lastTime) * 0.001
+            }
+            lastTime = time
+            var x = Math.cos(angle) * r
+            var y = Math.sin(angle) * r
+            cat.style.left = x + 'px'
+            cat.style.top = y + 'px'
+
+            requestAnimationFrame(animate)
+        }
+        requestAnimationFrame(animate)
+    </script>
+</body>
+
+</html>

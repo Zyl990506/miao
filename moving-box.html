@@ -82,6 +82,10 @@
                 }
             }
         })
+        window.addEventListener('blur', function(e) {
+            vx = 0
+            vy = 0
+        })
         var lastTime = 0
         requestAnimationFrame(function move(time) {
             var timeDiff = time - lastTime
