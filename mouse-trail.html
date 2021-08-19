@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            display: block;
+            position: absolute;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="https://i0.hdslb.com/bfs/emote/3087d273a78ccaff4bb1e9972e2ba2a7583c9f11.png@100w_100h.webp" alt="" class="a1">
+    <img src="https://i0.hdslb.com/bfs/emote/d15121545a99ac46774f1f4465b895fe2d1411c3.png@100w_100h.webp" alt="" class="a2">
+    <img src="https://i0.hdslb.com/bfs/emote/ea893aa25355de95ab4f03c2dad3f0c58d0c159e.png@100w_100h.webp" alt="" class="a3">
+    <script>
+        var a1 = document.querySelector('.a1')
+        var a2 = document.querySelector('.a2')
+        var a3 = document.querySelector('.a3')
+        var x = 0
+        var y = 0
+        window.addEventListener('mousemove', e => {
+            x = e.clientX
+            y = e.clientY
+            requestAnimationFrame(function animate(time) {
+                var angle1 = time * 0.003
+                var angle2 = 2 / 3 * Math.PI + time * 0.003
+                var angle3 = 4 / 3 * Math.PI + time * 0.003
+                a1.style.left = Math.cos(angle1) * 150 + x - a1.clientWidth / 2 + 'px'
+                a1.style.top = Math.sin(angle1) * 150 + y - a1.clientHeight / 2 + 'px'
+                a2.style.left = Math.cos(angle2) * 150 + x - a2.clientWidth / 2 + 'px'
+                a2.style.top = Math.sin(angle2) * 150 + y - a2.clientHeight / 2 + 'px'
+                a3.style.left = Math.cos(angle3) * 150 + x - a3.clientWidth / 2 + 'px'
+                a3.style.top = Math.sin(angle3) * 150 + y - a3.clientHeight / 2 + 'px'
+
+                requestAnimationFrame(animate)
+            })
+        })
+    </script>
+</body>
+
+</html>

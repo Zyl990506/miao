@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 文本框的change事件只会在光标移出
+    输入框后才会触发
+    如果想在输入的过程中就探测其改变
+    则可使用keydown/up/press,input事件 -->
+    <script>
+        $0.disabled = true // 光标被禁用
+        $0.draggable = true // 元素可以拖动
+            // 表单内部的DOM元素会有一个form属性指向其所在的form结点
+            // 而form结点，则有一个elements属性包含了所有的表单字段元素
+
+
+
+        document.addEventListener('copy', e => {
+            var useSelection = document.getSelection().toString() //拿到复制内容
+            e.clipboardData.setData('text', useSelection + '版权所有，禁止') //把拿到的复制内容替换为（useSelection + '版权所有，禁止'）
+            e.preventDefault() //阻止默认行为
+        })
+
+        //用来做错误上报
+        // window.onerror 不太合适叫事件，因为函数接收不只一个参数
+        //更合适叫hook函数/钩子函数 
+        window.onerror = function(errmsg, filename, rol, col, error) {
+            sent(arguments, '我的服务器')
+        }
+    </script>
+
+</body>
+
+</html>

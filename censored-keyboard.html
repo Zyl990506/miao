@@ -1,0 +1,26 @@
+<textarea name="" id="" cols="30" rows="10"></textarea>
+
+<script>
+    var textarea = document.querySelector('textarea')
+    textarea.addEventListener('keydown', e => {
+        if (e.key == 'Q' || e.key == 'W' || e.key == 'X') {
+            e.preventDefault()
+        }
+    })
+    textarea.addEventListener('paste', e => { //复制事件
+        // e.preventDefault()
+        var text = e.clipboardData.getData('text')
+        text = text.replace(/[QWX]/g, '*')
+        var start = textarea.selectionStart // 获取鼠标复制文档的开始位置
+        var end = textarea.selectionEnd // 获取鼠标复制文档的结束位置
+        var value = textarea.value
+
+        textarea.value = value.slice(0, start) + text + value.slice(end)
+        textarea.selectionStart = textarea.selectionEnd = (value.slice(0, start) + text).length
+
+        e.preventDefault()
+    })
+    textarea.addEventListener('drop', e => { //禁止拖拽事件
+        e.preventDefault()
+    })
+</script>

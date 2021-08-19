@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        span {
+            width: 20px;
+            height: 20px;
+            position: absolute;
+            background: url(./love.png);
+            background-size: cover;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            animation: animate 2s linear infinite;
+        }
+        
+        @keyframes animate {
+            0% {
+                transform: translate(-50%, -50%);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -1000%);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        document.addEventListener('mousemove', e => {
+            var body = document.querySelector('body')
+            var span = document.createElement('span')
+            var x = e.offsetX
+            var y = e.offsetY
+            span.style.left = x + 'px'
+            span.style.top = y + 'px'
+            body.appendChild(span)
+            setTimeout(function() {
+                body.removeChild(span)
+            }, 300)
+        })
+    </script>
+</body>
+
+</html>
