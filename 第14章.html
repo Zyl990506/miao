@@ -40,7 +40,17 @@
         window.onload = function() //在页面中所有资源（图片，字体等）加载完成时触发，只触发一次
         document.addEventListener('DOMContentLoaded', function() {
             // 在DOM树构建完成时触发，只触发一次
+
+            //结构化克隆(深度复制)算法：只能深度复制系统自带的类型
+            // worker内不能访问dom，以及任意与ui相关的接口
         })
+
+
+        // 如果在回调需要执行的时候，浏览器没有机会执行，那次执行就会被忽略
+        // 直到浏览器有空执行的时候，只补一次
+
+        //nextTick把任务放在当前事件循环结尾，两次tick的回调之间不会执行其它代码
+        //setImmediate把任务放在下一次事件循环的开头，两个immediate可能执行其它任务
     </script>
 </body>
 

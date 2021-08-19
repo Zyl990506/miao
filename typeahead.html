@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text">
+    <span></span>
+    <script>
+        var input = document.querySelector('input')
+        var span = document.querySelector('span')
+            // var id
+
+        // input.addEventListener('input', e => {
+        //     clearTimeout(id) // 每次输入吧上一次的清空
+        //     id = setTimeout(() => {
+        //         span.textContent = '显示联想' + Math.random()
+        //     }, 500)
+        // })
+
+
+        input.addEventListener('input',
+            debounce(function() {
+                span.textContent = '显示联想' + Math.random()
+            }, 500)
+        )
+
+
+        function debounce(f, duration) { // 防抖函数
+            var id
+            var latestArgs
+            var latestThis
+            var latestReturnValue
+            return function(...args) {
+                latestArgs = args
+                latestThis = this
+                clearTimeout(id)
+                id = setTimeout(() => {
+                    latestReturnValue = f.call(latestThis, ...latestArgs)
+                }, duration)
+                return latestReturnValue
+            }
+
+        }
+
+
+        function throttle(f, duration) { // 节流函数
+            var lastRuntime = 0
+            var id
+            return function(...args) {
+                if (Date.now() - lastRuntime > duration) { //如果距离上次执行时间大于diration
+                    f.call(this, ...args) // 调用f
+                    lastRuntime = Date.now() // 上一次运行时间
+                } else { // 时间不够久
+                    clearTimeout(id) // 清除上次执行
+                    id = setTimeout(() => {
+                            f.call(this, ...args)
+                            lastRuntime = Date.now() // 更新时间
+                        }, duration) // 安排它在duration时间后执行
+                }
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>
