@@ -41,8 +41,8 @@
         document.addEventListener('mousemove', e => {
             var body = document.querySelector('body')
             var span = document.createElement('span')
-            var x = e.offsetX
-            var y = e.offsetY
+            var x = e.clientX
+            var y = e.clientY
             span.style.left = x + 'px'
             span.style.top = y + 'px'
             body.appendChild(span)
